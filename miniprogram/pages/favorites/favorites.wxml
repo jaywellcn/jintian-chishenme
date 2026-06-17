@@ -21,7 +21,7 @@
       <view class="fav-item-content">
         <view class="fav-item-header">
           <text class="fav-item-name">{{item.name}}</text>
-          <view class="fav-item-category {{item.category}}">{{item.category}}</view>
+          <view class="fav-item-category {{utils.catClass(item.category)}}">{{item.category}}</view>
         </view>
         <text class="fav-item-reason">{{item.seasonal_reason || item.name + '——应季好选择'}}</text>
         <view class="fav-item-meta">

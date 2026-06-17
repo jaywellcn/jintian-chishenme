@@ -32,7 +32,7 @@
     <view class="recipe-main-card" bindtap="viewDetail" wx:if="{{!loading && recommendation}}">
       <!-- card header -->
       <view class="card-header">
-        <view class="card-category {{recommendation.category}}">
+        <view class="card-category {{categoryClass}}">
           <text>{{recommendation.category}}</text>
         </view>
         <view class="card-difficulty">

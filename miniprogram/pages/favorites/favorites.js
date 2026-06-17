@@ -6,7 +6,11 @@ Page({
     favorites: [],
     loading: true,
     utils: {
-      stringify: (obj) => JSON.stringify(obj)
+      stringify: (obj) => JSON.stringify(obj),
+      catClass: (cat) => {
+        const m = { '外卖': 'cat-takeout', '自己做': 'cat-cook', '简单快手': 'cat-quick' };
+        return m[cat] || 'cat-takeout';
+      }
     }
   },
 

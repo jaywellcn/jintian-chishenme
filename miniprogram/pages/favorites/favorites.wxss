@@ -94,17 +94,17 @@
   font-size: 20rpx;
 }
 
-.fav-item-category.外卖 {
+.fav-item-category.cat-takeout {
   background: #FFF3E0;
   color: #E65100;
 }
 
-.fav-item-category.自己做 {
+.fav-item-category.cat-cook {
   background: #E8F5E9;
   color: #2E7D32;
 }
 
-.fav-item-category.简单快手 {
+.fav-item-category.cat-quick {
   background: #E3F2FD;
   color: #1565C0;
 }

@@ -109,8 +109,17 @@ Page({
     const difficultyStars = difficultyInfo.stars.split('');
     const isFavorited = this.data.favorites.some(f => f === dish._id || f === dish.id);
 
+    // category Chinese to English class name mapping
+    const categoryClassMap = {
+      '外卖': 'cat-takeout',
+      '自己做': 'cat-cook',
+      '简单快手': 'cat-quick'
+    };
+    const categoryClass = categoryClassMap[dish.category] || 'cat-takeout';
+
     this.setData({
       recommendation: dish,
+      categoryClass,
       difficultyStars,
       isFavorited,
       loading: false,
