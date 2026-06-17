@@ -1,0 +1,9 @@
+{
+  "name": "getRecommendation",
+  "version": "1.0.0",
+  "description": "推荐引擎云函数",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "latest"
+  }
+}

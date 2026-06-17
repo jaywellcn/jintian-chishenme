@@ -1,0 +1,41 @@
+<!-- pages/favorites/favorites.wxml -->
+<view class="page-container">
+  
+  <!-- header -->
+  <view class="fav-header">
+    <text class="fav-title">我的收藏</text>
+    <text class="fav-count" wx:if="{{favorites.length > 0}}">共 {{favorites.length}} 道菜</text>
+  </view>
+
+  <!-- empty state -->
+  <view class="empty-state" wx:if="{{favorites.length === 0 && !loading}}">
+    <text class="empty-icon">💝</text>
+    <text class="empty-title">还没有收藏哦</text>
+    <text class="empty-desc">遇到喜欢的菜，点❤️收藏吧</text>
+    <button class="empty-btn" bindtap="goHome">去看看今天推荐 →</button>
+  </view>
+
+  <!-- favorites list -->
+  <view class="fav-list" wx:if="{{favorites.length > 0}}">
+    <view class="fav-item" wx:for="{{favorites}}" wx:key="_id" bindtap="viewDetail" data-dish="{{utils.stringify(item)}}">
+      <view class="fav-item-content">
+        <view class="fav-item-header">
+          <text class="fav-item-name">{{item.name}}</text>
+          <view class="fav-item-category {{item.category}}">{{item.category}}</view>
+        </view>
+        <text class="fav-item-reason">{{item.seasonal_reason || item.name + '——应季好选择'}}</text>
+        <view class="fav-item-meta">
+          <text class="meta-tag">⏱ {{item.cooking_time || '--'}}分钟</text>
+          <text class="meta-tag">🍳 {{item.difficulty || '--'}}</text>
+          <text class="meta-tag">🍽 {{item.meal_type || '--'}}</text>
+        </view>
+      </view>
+      <view class="fav-item-arrow">→</view>
+    </view>
+  </view>
+
+  <!-- loading -->
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+</view>

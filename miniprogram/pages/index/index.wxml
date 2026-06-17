@@ -1,0 +1,109 @@
+<!-- index page -->
+<view class="page-container" style="background: {{seasonColor.bg}};">
+  
+  <!-- season banner -->
+  <view class="season-banner" style="background: linear-gradient(135deg, {{seasonColor.primary}}, {{seasonColor.primary}}dd);">
+    <view class="banner-content">
+      <view class="banner-header">
+        <text class="banner-emoji">{{solarTerm.emoji || '🌸'}}</text>
+        <view class="banner-info">
+          <text class="banner-term-name">{{solarTerm.name}}</text>
+          <text class="banner-date">{{solarTerm.start}} - {{solarTerm.end}}</text>
+        </view>
+      </view>
+      <text class="banner-tip">「{{solarTerm.tip || '顺时而食，应季而养'}}」</text>
+    </view>
+  </view>
+
+  <!-- hint bar -->
+  <view class="hint-bar" wx:if="{{!hasPreferences}}" bindtap="goSettings">
+    <text class="hint-icon">💡</text>
+    <text class="hint-text">设置你的口味偏好，推荐更准 →</text>
+  </view>
+
+  <!-- recommendation section -->
+  <view class="recommend-section">
+    <view class="section-label">
+      <text class="label-text">今日推荐</text>
+      <text class="label-date">{{todayDate}}</text>
+    </view>
+
+    <!-- main recipe card -->
+    <view class="recipe-main-card" bindtap="viewDetail" wx:if="{{!loading && recommendation}}">
+      <!-- card header -->
+      <view class="card-header">
+        <view class="card-category {{recommendation.category}}">
+          <text>{{recommendation.category}}</text>
+        </view>
+        <view class="card-difficulty">
+          <text wx:for="{{difficultyStars}}" wx:key="*this">{{item}}</text>
+        </view>
+      </view>
+
+      <!-- dish name -->
+      <text class="card-dish-name">{{recommendation.name}}</text>
+
+      <!-- reason -->
+      <view class="card-reason">
+        <text class="reason-icon">📌</text>
+        <text class="reason-text">{{recommendation.seasonal_reason || recommendation.reason}}</text>
+      </view>
+
+      <!-- ingredients -->
+      <view class="card-ingredients" wx:if="{{recommendation.main_ingredients}}">
+        <text class="ingredients-label">🛒 </text>
+        <text class="ingredient-tag" wx:for="{{recommendation.main_ingredients}}" wx:key="*this" wx:for-item="ing">{{ing}}</text>
+      </view>
+
+      <!-- card footer -->
+      <view class="card-footer">
+        <view class="card-meta">
+          <text class="meta-item">⏱ {{recommendation.cooking_time || '--'}}分钟</text>
+          <text class="meta-item" wx:if="{{recommendation.meal_type}}">🍽 {{recommendation.meal_type}}</text>
+        </view>
+        <view class="card-actions">
+          <text class="action-text text-primary">查看做法 →</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- loading -->
+    <view class="loading-card" wx:if="{{loading}}">
+      <view class="loading-spinner"></view>
+      <text class="loading-text">正在为你推荐...</text>
+    </view>
+
+    <!-- error -->
+    <view class="error-card" wx:if="{{!loading && !recommendation && error}}">
+      <text class="error-icon">😵</text>
+      <text class="error-text">{{error}}</text>
+      <button class="btn-retry" bindtap="refreshRecommendation">重新获取</button>
+    </view>
+
+    <!-- action buttons -->
+    <view class="action-buttons" wx:if="{{!loading && recommendation}}">
+      <button class="btn-refresh" bindtap="changeOne">
+        <text class="btn-icon">🔄</text>
+        <text>换一个</text>
+      </button>
+      <button class="btn-favorite {{isFavorited ? 'favorited' : ''}}" bindtap="toggleFavorite">
+        <text class="btn-icon">{{isFavorited ? '❤️' : '🤍'}}</text>
+        <text>{{isFavorited ? '已收藏' : '收藏'}}</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- seasonal ingredients -->
+  <view class="seasonal-section" wx:if="{{!loading && solarTerm.detail}}">
+    <view class="section-label">
+      <text class="label-text">🌿 当季时令食材</text>
+    </view>
+    <view class="ingredients-cloud">
+      <text class="ingredient-chip" wx:for="{{solarTerm.detail.key_ingredients}}" wx:key="*this">{{item}}</text>
+    </view>
+    <text class="seasonal-tip">💡 烹饪建议：{{solarTerm.detail.cooking_style || '根据食材特点选择烹饪方式'}}</text>
+  </view>
+
+  <!-- bottom safe -->
+  <view class="bottom-safe"></view>
+</view>

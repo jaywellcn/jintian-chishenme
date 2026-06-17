@@ -1,0 +1,66 @@
+<!-- pages/detail/detail.wxml -->
+<view class="page-container">
+  
+  <!-- header -->
+  <view class="detail-header" style="background: linear-gradient(135deg, {{seasonColor.primary}}, {{seasonColor.primary}}dd);">
+    <view class="header-content">
+      <view class="dish-category-tag">{{dish.category}}</view>
+      <text class="dish-name">{{dish.name}}</text>
+      <view class="dish-meta">
+        <text class="meta-badge">⏱ {{dish.cooking_time || '--'}}分钟</text>
+        <text class="meta-badge">🍳 {{dish.difficulty || '--'}}</text>
+        <text class="meta-badge">🍽 {{dish.meal_type || '--'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- reason -->
+  <view class="reason-card card">
+    <view class="reason-header">
+      <text class="reason-title">📌 为什么今天推荐这道菜？</text>
+    </view>
+    <text class="reason-content">{{dish.seasonal_reason || '当季食材，顺应时节，吃得健康。'}}</text>
+    <view class="reason-tags" wx:if="{{dish.tags && dish.tags.length > 0}}">
+      <text class="tag tag-green" wx:for="{{dish.tags}}" wx:key="*this">{{item}}</text>
+    </view>
+  </view>
+
+  <view class="ingredients-card card">
+    <view class="section-title">
+      <text class="title-icon">🛒</text>
+      <text class="title-text">食材清单</text>
+    </view>
+    <view class="ingredients-list">
+      <view class="ingredient-item" wx:for="{{dish.main_ingredients}}" wx:key="*this">
+        <text class="ing-dot">•</text>
+        <text class="ing-name">{{item}}</text>
+        <text class="ing-seasonal" wx:if="{{isSeasonal(item)}}">时令</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- steps -->
+  <view class="steps-card card">
+    <view class="section-title">
+      <text class="title-icon">📝</text>
+      <text class="title-text">简要做法</text>
+    </view>
+    <view class="steps-list">
+      <view class="step-item" wx:for="{{dish.brief_steps}}" wx:key="*this">
+        <view class="step-number">{{index + 1}}</view>
+        <text class="step-text">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- bottom bar -->
+  <view class="bottom-bar">
+    <button class="bar-btn {{isFavorited ? 'favorited' : ''}}" bindtap="toggleFavorite">
+      <text>{{isFavorited ? '❤️' : '🤍'}}</text>
+      <text>{{isFavorited ? '已收藏' : '收藏'}}</text>
+    </button>
+    <button class="bar-btn share-btn" bindtap="goBack">
+      <text>← 返回首页</text>
+    </button>
+  </view>
+</view>

@@ -1,0 +1,165 @@
+/* pages/settings/settings.wxss */
+.page-container {
+  min-height: 100vh;
+  background: #F5F5F5;
+  padding-bottom: 120rpx;
+}
+
+.settings-section {
+  margin: 20rpx;
+}
+
+.section-title {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #888;
+  padding: 16rpx 10rpx;
+  display: block;
+  text-transform: uppercase;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx 20rpx;
+  background: #fff;
+  border-radius: 16rpx;
+}
+
+.setting-label {
+  font-size: 30rpx;
+}
+
+.setting-value-row {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.setting-value {
+  font-size: 28rpx;
+  color: #4CAF50;
+}
+
+.setting-arrow {
+  font-size: 24rpx;
+  color: #CCC;
+}
+
+/* taste */
+.taste-cloud, .taboo-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  padding: 10rpx;
+}
+
+.taste-chip, .taboo-chip {
+  padding: 14rpx 24rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  font-size: 26rpx;
+  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.04);
+  transition: all 0.2s;
+}
+
+.taste-chip.selected, .taboo-chip.selected {
+  background: #E8F5E9;
+  border: 2rpx solid #4CAF50;
+  color: #2E7D32;
+}
+
+.taboo-chip.selected {
+  background: #FFEBEE;
+  border-color: #F44336;
+  color: #F44336;
+}
+
+/* scene */
+.scene-options {
+  display: flex;
+  gap: 16rpx;
+}
+
+.scene-option {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24rpx 12rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.04);
+  transition: all 0.2s;
+}
+
+.scene-option.selected {
+  background: #E8F5E9;
+  border: 2rpx solid #4CAF50;
+}
+
+.scene-option-emoji {
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+
+.scene-option-label {
+  font-size: 24rpx;
+  color: #555;
+}
+
+/* about */
+.about-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  text-align: center;
+}
+
+.about-name {
+  font-size: 32rpx;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 6rpx;
+}
+
+.about-version {
+  font-size: 22rpx;
+  color: #999;
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.about-desc {
+  font-size: 24rpx;
+  color: #888;
+  display: block;
+}
+
+/* save button */
+.save-area {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20rpx 30rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  background: #fff;
+  box-shadow: 0 -2rpx 12rpx rgba(0,0,0,0.06);
+}
+
+.btn-save {
+  width: 100%;
+  padding: 24rpx;
+  background: #4CAF50;
+  color: #fff;
+  border-radius: 16rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  border: none;
+}
+
+.btn-save:active {
+  background: #388E3C;
+}

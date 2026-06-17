@@ -1,0 +1,136 @@
+/* pages/favorites/favorites.wxss */
+.page-container {
+  min-height: 100vh;
+  background: #F5F5F5;
+}
+
+.fav-header {
+  padding: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fav-title {
+  font-size: 36rpx;
+  font-weight: 700;
+}
+
+.fav-count {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* empty state */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120rpx 60rpx;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 100rpx;
+  margin-bottom: 24rpx;
+}
+
+.empty-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 10rpx;
+}
+
+.empty-desc {
+  font-size: 26rpx;
+  color: #999;
+  margin-bottom: 40rpx;
+}
+
+.empty-btn {
+  padding: 20rpx 40rpx;
+  background: #4CAF50;
+  color: #fff;
+  border-radius: 20rpx;
+  font-size: 28rpx;
+  border: none;
+}
+
+/* favorites list */
+.fav-list {
+  padding: 0 20rpx;
+}
+
+.fav-item {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 16rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.04);
+}
+
+.fav-item-content {
+  flex: 1;
+}
+
+.fav-item-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+
+.fav-item-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-right: 12rpx;
+}
+
+.fav-item-category {
+  padding: 4rpx 12rpx;
+  border-radius: 12rpx;
+  font-size: 20rpx;
+}
+
+.fav-item-category.外卖 {
+  background: #FFF3E0;
+  color: #E65100;
+}
+
+.fav-item-category.自己做 {
+  background: #E8F5E9;
+  color: #2E7D32;
+}
+
+.fav-item-category.简单快手 {
+  background: #E3F2FD;
+  color: #1565C0;
+}
+
+.fav-item-reason {
+  font-size: 24rpx;
+  color: #888;
+  display: block;
+  margin-bottom: 10rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fav-item-meta {
+  display: flex;
+  gap: 20rpx;
+}
+
+.meta-tag {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.fav-item-arrow {
+  font-size: 28rpx;
+  color: #CCC;
+  margin-left: 12rpx;
+}

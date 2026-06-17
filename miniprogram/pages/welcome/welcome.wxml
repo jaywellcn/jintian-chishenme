@@ -1,0 +1,132 @@
+<!-- pages/welcome/welcome.wxml -->
+<view class="welcome-container">
+  <!-- slide 1: welcome -->
+  <view class="welcome-slide" wx:if="{{step === 0}}">
+    <view class="welcome-illustration">
+      <text class="welcome-emoji">🥢</text>
+    </view>
+    <text class="welcome-title">今天吃什么</text>
+    <text class="welcome-subtitle">顺时而食，一口吃掉选择困难</text>
+    <view class="welcome-features">
+      <view class="feature-item">
+        <text class="feature-emoji">🌿</text>
+        <text class="feature-text">二十四节气时令推荐</text>
+      </view>
+      <view class="feature-item">
+        <text class="feature-emoji">📍</text>
+        <text class="feature-text">结合你的家乡口味</text>
+      </view>
+      <view class="feature-item">
+        <text class="feature-emoji">🎯</text>
+        <text class="feature-text">每天一道，不再纠结</text>
+      </view>
+    </view>
+    <button class="btn-start" bindtap="nextStep">开始</button>
+  </view>
+
+  <!-- slide 2: city -->
+  <view class="welcome-slide" wx:if="{{step === 1}}">
+    <text class="step-title">你在哪个城市？</text>
+    <text class="step-desc">用来推荐符合当地口味的菜谱</text>
+    
+    <view class="location-status" wx:if="{{locating}}">
+      <text>正在定位...</text>
+    </view>
+    
+    <view class="city-display" wx:if="{{selectedCity}}">
+      <text class="city-emoji">📍</text>
+      <text class="city-name">{{selectedCity}}</text>
+      <text class="city-change" bindtap="changeCity">修改</text>
+    </view>
+
+    <view class="city-picker" wx:if="{{!selectedCity || showCityPicker}}">
+      <input class="city-input" 
+             placeholder="搜索城市名" 
+             value="{{citySearch}}" 
+             bindinput="onCitySearch"
+             focus="{{showCityPicker}}" />
+      <scroll-view class="city-list" scroll-y wx:if="{{citySuggestions.length > 0}}">
+        <view class="city-option" 
+              wx:for="{{citySuggestions}}" 
+              wx:key="*this"
+              bindtap="selectCity"
+              data-city="{{item}}">
+          {{item}}
+        </view>
+      </scroll-view>
+    </view>
+
+    <button class="btn-next" bindtap="nextStep" disabled="{{!selectedCity}}">下一步</button>
+    <text class="skip-link" bindtap="nextStep">跳过</text>
+  </view>
+
+  <!-- slide 3: taste -->
+  <view class="welcome-slide" wx:if="{{step === 2}}">
+    <text class="step-title">你喜欢什么口味？</text>
+    <text class="step-desc">可多选，推荐会更精准</text>
+    
+    <view class="taste-grid">
+      <view class="taste-item {{utils.isSelected(tasteTags, item.value) ? 'selected' : ''}}" 
+            wx:for="{{allTasteTags}}" 
+            wx:key="value"
+            bindtap="toggleTaste"
+            data-value="{{item.value}}">
+        <text class="taste-emoji">{{item.emoji}}</text>
+        <text class="taste-label">{{item.label}}</text>
+      </view>
+    </view>
+
+    <button class="btn-next" bindtap="nextStep">下一步</button>
+    <text class="skip-link" bindtap="nextStep">跳过</text>
+  </view>
+
+  <!-- slide 4: taboo -->
+  <view class="welcome-slide" wx:if="{{step === 3}}">
+    <text class="step-title">有什么忌口吗？</text>
+    <text class="step-desc">我们会避开这些食材</text>
+    
+    <view class="taboo-grid">
+      <view class="taboo-item {{utils.isSelected(taboos, item.value) ? 'selected' : ''}}" 
+            wx:for="{{allTabooOptions}}" 
+            wx:key="value"
+            bindtap="toggleTaboo"
+            data-value="{{item.value}}">
+        <text>{{item.label}}</text>
+      </view>
+    </view>
+
+    <button class="btn-next" bindtap="nextStep">下一步</button>
+    <text class="skip-link" bindtap="nextStep">跳过</text>
+  </view>
+
+  <!-- slide 5: scene -->
+  <view class="welcome-slide" wx:if="{{step === 4}}">
+    <text class="step-title">你一般怎么吃饭？</text>
+    <text class="step-desc">选择偏好的场景，推荐更实用</text>
+    
+    <view class="scene-list">
+      <view class="scene-item {{scenePreference === item.value ? 'selected' : ''}}" 
+            wx:for="{{allSceneOptions}}" 
+            wx:key="value"
+            bindtap="selectScene"
+            data-value="{{item.value}}">
+        <text class="scene-emoji">{{item.emoji}}</text>
+        <view class="scene-info">
+          <text class="scene-label">{{item.label}}</text>
+          <text class="scene-desc">{{item.desc}}</text>
+        </view>
+      </view>
+    </view>
+
+    <button class="btn-finish" bindtap="finishSetup">完成，看今天吃什么 →</button>
+  </view>
+
+  <!-- progress -->
+  <view class="progress-dots">
+    <view class="dot {{step >= 0 ? 'active' : ''}}"></view>
+    <view class="dot {{step >= 1 ? 'active' : ''}}"></view>
+    <view class="dot {{step >= 2 ? 'active' : ''}}"></view>
+    <view class="dot {{step >= 3 ? 'active' : ''}}"></view>
+    <view class="dot {{step >= 4 ? 'active' : ''}}"></view>
+  </view>
+</view>

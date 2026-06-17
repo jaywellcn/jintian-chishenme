@@ -1,0 +1,9 @@
+{
+  "name": "updatePreferences",
+  "version": "1.0.0",
+  "description": "更新用户偏好云函数",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "latest"
+  }
+}
