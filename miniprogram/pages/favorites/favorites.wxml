@@ -1,4 +1,15 @@
 <!-- pages/favorites/favorites.wxml -->
+<wxs module="utils">
+  module.exports = {
+    stringify: function(obj) {
+      return JSON.stringify(obj);
+    },
+    catClass: function(cat) {
+      var m = { '外卖': 'cat-takeout', '自己做': 'cat-cook', '简单快手': 'cat-quick' };
+      return m[cat] || 'cat-takeout';
+    }
+  };
+</wxs>
 <view class="page-container">
   
   <!-- header -->
@@ -17,20 +28,23 @@
 
   <!-- favorites list -->
   <view class="fav-list" wx:if="{{favorites.length > 0}}">
-    <view class="fav-item" wx:for="{{favorites}}" wx:key="_id" bindtap="viewDetail" data-dish="{{utils.stringify(item)}}">
-      <view class="fav-item-content">
+    <view class="fav-item" wx:for="{{favorites}}" wx:key="_id">
+      <view class="fav-item-content" bindtap="viewDetail" data-dish="{{utils.stringify(item)}}">
         <view class="fav-item-header">
           <text class="fav-item-name">{{item.name}}</text>
           <view class="fav-item-category {{utils.catClass(item.category)}}">{{item.category}}</view>
         </view>
-        <text class="fav-item-reason">{{item.seasonal_reason || item.name + '——应季好选择'}}</text>
+        <text class="fav-item-reason">{{item.seasonal_reason || item.name}}</text>
         <view class="fav-item-meta">
           <text class="meta-tag">⏱ {{item.cooking_time || '--'}}分钟</text>
           <text class="meta-tag">🍳 {{item.difficulty || '--'}}</text>
           <text class="meta-tag">🍽 {{item.meal_type || '--'}}</text>
         </view>
       </view>
-      <view class="fav-item-arrow">→</view>
+      <view class="fav-item-actions">
+        <view class="fav-item-arrow" bindtap="viewDetail" data-dish="{{utils.stringify(item)}}">→</view>
+        <view class="fav-item-remove" catchtap="removeFavorite" data-id="{{item._id}}" data-index="{{index}}">✕</view>
+      </view>
     </view>
   </view>
 

@@ -12,10 +12,7 @@ Page({
     },
     allTasteTags: TASTE_TAGS,
     allTabooOptions: TABOO_OPTIONS,
-    allSceneOptions: SCENE_OPTIONS,
-    utils: {
-      isSelected: (arr, val) => (arr || []).includes(val)
-    }
+    allSceneOptions: SCENE_OPTIONS
   },
 
   onShow() {

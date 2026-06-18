@@ -17,6 +17,12 @@ Page({
   },
 
   onLoad() {
+    // 检查是否首次使用
+    const hasLaunched = wx.getStorageSync('hasLaunched');
+    if (!hasLaunched) {
+      wx.redirectTo({ url: '/pages/welcome/welcome' });
+      return;
+    }
     this.init();
   },
 

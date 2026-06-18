@@ -1,4 +1,15 @@
 <!-- pages/settings/settings.wxml -->
+<wxs module="utils">
+  module.exports = {
+    isSelected: function(arr, val) {
+      if (!arr) return false;
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i] === val) return true;
+      }
+      return false;
+    }
+  };
+</wxs>
 <view class="page-container">
   
   <view class="settings-section">
